@@ -1,8 +1,8 @@
-// Websocket = new WebSocket("ws://localhost:9000/test");
+Websocket = new WebSocket("ws://localhost:8000/");
 // Websocket = new WebSocket("ws://10.43.48.75/test");
 StudentFactorsChart = 0;
 CoursesFactorsChart = 0;
-Websocket = new WebSocket("ws://franciscogutierrez10-80.terminal.com/test");
+//Websocket = new WebSocket("ws://franciscogutierrez10-80.terminal.com/test");
 Websocket.onopen    = function(evt) { onOpen(evt)    };
 Websocket.onclose   = function(evt) { onClose(evt)   };
 Websocket.onmessage = function(evt) { onMessage(evt) };
@@ -39,6 +39,7 @@ $(document).ready(function() {
         string += '{"id": "'+courses[courses.length-1]+'", "compliance": 5}';
         // Elaborate the request
         request = '{"requestId": "'+ Meteor.connection._lastSessionId +'",'+
+	'"source": "espol",'+
         '"student": [{"id": '+ student +',"gpa": 7.0793,'+
         '"performance": 0.6,"compliance": 3}],'+
         '"courses": ['+ string + '],'+
@@ -54,7 +55,8 @@ $(document).ready(function() {
     } else if (Websocket.readyState == 3) {
       $("#paperToast").attr("text","Conexión inactiva, volviendo a conectar...");
       document.querySelector('#paperToast').show();
-      Websocket = new WebSocket("ws://franciscogutierrez10-80.terminal.com/test");
+      //Websocket = new WebSocket("ws://franciscogutierrez10-80.terminal.com/test");
+      Websocket = new WebSocket("ws://200.126.23.107:8000");
       Websocket.onopen    = function(evt) { onOpen(evt)   };
       Websocket.onclose   = function(evt) { onClose(evt)  };
       Websocket.onmessage = function(evt) { onMessage(evt)};
